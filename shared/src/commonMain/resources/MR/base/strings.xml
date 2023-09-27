@@ -1,0 +1,10 @@
+<resources>
+    <string name="login_screen_title">Iniciar Sesión</string>
+    <string name="login_screen_email_placeholder">Correo electrónico</string>
+    <string name="login_screen_password_placeholder">Contraseña</string>
+    <string name="login_screen_sign_up_label">Eres nuevo?</string>
+    <string name="login_screen_sign_up_link">Crear cuenta</string>
+    <string name="login_screen_forgot_password_button">¿Olvidó su contraseña?</string>
+    <string name="login_screen_sign_in_button">Ingresar</string>
+    <string name="login_screen_terms_button">Términos y condiciones</string>
+</resources>

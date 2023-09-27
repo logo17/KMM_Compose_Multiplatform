@@ -19,6 +19,8 @@ kotlin {
     }
 
     sourceSets {
+        val preComposeVersion = extra["precompose.version"] as String
+        val mokoResourcesVersion = extra["moko.resources.version"] as String
         val commonMain by getting {
             dependencies {
                 implementation(compose.runtime)
@@ -26,9 +28,12 @@ kotlin {
                 implementation(compose.material)
                 @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
                 implementation(compose.components.resources)
+                api(compose.animation)
+                api("moe.tlaster:precompose:$preComposeVersion")
             }
         }
         val androidMain by getting {
+            dependsOn(commonMain)
             dependencies {
                 api("androidx.activity:activity-compose:1.7.2")
                 api("androidx.appcompat:appcompat:1.6.1")
@@ -52,8 +57,8 @@ android {
     namespace = "com.myapplication.common"
 
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
-    sourceSets["main"].res.srcDirs("src/androidMain/res")
-    sourceSets["main"].resources.srcDirs("src/commonMain/resources")
+    sourceSets["main"].resources.srcDirs("src/androidMain/res", "src/commonMain/resources")
+    sourceSets["main"].res.srcDirs("src/androidMain/res", "src/commonMain/resources")
 
     defaultConfig {
         minSdk = (findProperty("android.minSdk") as String).toInt()
